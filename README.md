@@ -12,7 +12,7 @@ Two AWS Lambda will be created
 2. Edge Lambda is used a JWT authorizer integrates with Auth0 as IDP issuer
 
 ### Auth0
-Opensource IDaaS to provide JWT t
+Auth0 is a flexible, drop-in solution to add authentication and authorization services to your applications.
 
 ### Pre-requisites
 1. [Auth0](https://auth0.com/docs/integrations/aws-api-gateway/custom-authorizers/part-1)
