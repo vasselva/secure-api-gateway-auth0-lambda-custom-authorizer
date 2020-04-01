@@ -1,65 +1,38 @@
 
-# Welcome to your CDK Python project!
+# CDK deploy for Secure API gateway
 
-You should explore the contents of this project. It demonstrates a CDK app with an instance of a stack (`secure_apigateway_stack`)
-which contains an Amazon SQS queue that is subscribed to an Amazon SNS topic.
+##  Resources Used and deployed
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+### API Gateway
+AWS API Gateway Rest API deployed with GET and POST calls proxies to AWS Lambda. AWS API Gateway authenticates the API using Lambda custom authoriser.
 
-This project is set up like a standard Python project.  The initialization process also creates
-a virtualenv within this project, stored under the .env directory.  To create the virtualenv
-it assumes that there is a `python3` executable in your path with access to the `venv` package.
-If for any reason the automatic creation of the virtualenv fails, you can create the virtualenv
-manually once the init process completes.
+### AWS Lambda
+Two AWS Lambda will be created
+1. Lambda Proxy with S3 bucket to store the widgets
+2. Edge Lambda is used a JWT authorizer integrates with Auth0 as IDP issuer
 
-To manually create a virtualenv on MacOS and Linux:
+### Auth0
+Opensource IDaaS to provide JWT t
 
+### Pre-requisites
+1. [Auth0](https://auth0.com/docs/integrations/aws-api-gateway/custom-authorizers/part-1)
+2. AWS account
+3. CDK binaries on laptop
+
+### Installation
+1. Download this repo locally
+2. CDK deploy
+
+### Post Installation Testing
+Test Locally
 ```
-$ python3 -m venv .env
+curl  --request GET \
+--url <API Endpoint>
+--header 'authorization: Bearer <Bearer token from Auth0>'
 ```
+### References
+- https://auth0.com/docs/integrations/aws-api-gateway/custom-authorizers
+- https://github.com/auth0-samples/jwt-rsa-aws-custom-authorizer
+- https://github.com/aws-samples/aws-cdk-examples/tree/master/python/my-widget-service
 
-After the init process completes and the virtualenv is created, you can use the following
-step to activate your virtualenv.
 
-```
-$ source .env/bin/activate
-```
-
-If you are a Windows platform, you would activate the virtualenv like this:
-
-```
-% .env\Scripts\activate.bat
-```
-
-Once the virtualenv is activated, you can install the required dependencies.
-
-```
-$ pip install -r requirements.txt
-```
-
-At this point you can now synthesize the CloudFormation template for this code.
-
-```
-$ cdk synth
-```
-
-You can now begin exploring the source code, contained in the hello directory.
-There is also a very trivial test included that can be run like this:
-
-```
-$ pytest
-```
-
-To add additional dependencies, for example other CDK libraries, just add to
-your requirements.txt file and rerun the `pip install -r requirements.txt`
-command.
-
-## Useful commands
-
- * `cdk ls`          list all stacks in the app
- * `cdk synth`       emits the synthesized CloudFormation template
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk docs`        open CDK documentation
-
-Enjoy!
