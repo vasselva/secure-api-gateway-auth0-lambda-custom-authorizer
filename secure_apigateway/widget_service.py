@@ -10,6 +10,10 @@ class WidgetService(core.Construct):
         super().__init__(scope, id)
 
         bucket = s3.Bucket(self, "WidgetStore")
+        # Environment Variables 
+        aud = os.environ.get("AUDIENCE", os.environ["AUDIENCE"])
+        jwks_url = os.environ.get("JWKS_URL", os.environ["JWKS_URL"])
+        iss = os.environ.get("TOKEN_ISSUER", os.environ["TOKEN_ISSUER"])
 
         handler = lambda_.Function(self, "WidgetHandler",
                     runtime=lambda_.Runtime.NODEJS_10_X,
@@ -49,9 +53,10 @@ class WidgetService(core.Construct):
                     memory_size=256,
                     handler="index.handler",
                     environment=dict(
-                     AUDIENCE="https://your-api-gateway",
-                     JWKS_URI="https://vasselva.au.auth0.com/.well-known/jwks.json",
-                     TOKEN_ISSUER="https://vasselva.au.auth0.com/")
+                    # AUDIENCE="https://your-api-gateway",
+                     AUDIENCE=aud,
+                     JWKS_URI=jwks_url,
+                     TOKEN_ISSUER=iss)
                     )
         
         auth = apigateway.TokenAuthorizer(self,"custom-authoriser",

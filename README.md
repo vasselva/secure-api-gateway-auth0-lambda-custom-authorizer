@@ -21,6 +21,10 @@ Auth0 is a flexible, drop-in solution to add authentication and authorization se
 
 ### Installation
 1. Download this repo locally
+2. export below variables
+    - export AUDIENCE=<your-api-gateway>
+    - export JWKS_URI=https://<domain>.au.auth0.com/.well-known/jwks.json
+    - export TOKEN_ISSUER=https://<domain>.au.auth0.com/
 2. CDK deploy
 
 ### Post Installation Testing
