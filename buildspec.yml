@@ -3,9 +3,8 @@ phases:
   build:
     commands:
       - pip install -r requirements.txt
-      - npm install
-      - npm run build
-      - npm run cdk deploy
+      - npm install -g aws-cdk
+      - cdk deploy
 artifacts:
   files:
     - '**/*'
