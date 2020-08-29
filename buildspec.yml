@@ -3,7 +3,9 @@ phases:
   build:
     commands:
       - pip install -r requirements.txt
-      - cdk deploy
+      - npm install
+      - npm run build
+      - npm run cdk deploy
 artifacts:
   files:
     - '**/*'
