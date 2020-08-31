@@ -4,6 +4,7 @@ phases:
     commands:
       - pip install -r requirements.txt
       - npm install -g aws-cdk
+      - python -m pip install aws_cdk.aws_apigateway
       - cdk deploy
 artifacts:
   files:
