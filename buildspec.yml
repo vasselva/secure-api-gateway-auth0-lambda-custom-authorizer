@@ -1,4 +1,10 @@
 version: 0.2
+env:
+  shell: /bin/sh
+  variables:
+    AUDIENCE: "https://your-api-gateway"
+    TOKEN_ISSUER: "https://vasselva.au.auth0.com/"
+    JWKS_URL: "https://vasselva.au.auth0.com/.well-known/jwks.json"
 phases:
   build:
     commands:
