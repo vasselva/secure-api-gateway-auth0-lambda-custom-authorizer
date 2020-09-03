@@ -11,7 +11,7 @@ phases:
       - pip install -r requirements.txt
       - npm install -g aws-cdk
       - python -m pip install aws_cdk.aws_apigateway
-      - cdk bootstrap '236258404484/ap-southeast-1' --without-public-access-block-configuration
+      - cdk bootstrap '236258404484/ap-southeast-1'
       - cdk deploy --require-approval never
 artifacts:
   files:
