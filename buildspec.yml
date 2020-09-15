@@ -1,0 +1,18 @@
+version: 0.2
+env:
+  shell: /bin/sh
+  variables:
+    AUDIENCE: "https://your-api-gateway"
+    TOKEN_ISSUER: "https://vasselva.au.auth0.com/"
+    JWKS_URL: "https://vasselva.au.auth0.com/.well-known/jwks.json"
+phases:
+  build:
+    commands:
+      - pip install -r requirements.txt
+      - npm install -g aws-cdk
+      - python -m pip install aws_cdk.aws_apigateway
+      - cdk bootstrap '236258404484/ap-southeast-1'
+      - cdk deploy --require-approval never
+artifacts:
+  files:
+    - '**/*'
