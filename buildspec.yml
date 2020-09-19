@@ -10,9 +10,12 @@ phases:
     commands:
       - pip install -r requirements.txt
       - npm install -g aws-cdk
-      - python -m pip install aws_cdk.aws_apigateway
-      - cdk bootstrap '236258404484/ap-southeast-1'
-      - cdk deploy --require-approval never
+      - npm run build
+      - npm run cdk synth -- -o dist
+      # - python -m pip install aws_cdk.aws_apigateway
+      # - cdk bootstrap '236258404484/ap-southeast-1'
+      # - cdk deploy --require-approval never
 artifacts:
+  base-directory: dist
   files:
-    - '**/*'
+    - '*.*.json'
