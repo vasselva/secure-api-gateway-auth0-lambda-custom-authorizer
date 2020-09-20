@@ -13,10 +13,10 @@ phases:
       # - npm run build
       # - npm run cdk synth -- -o dist
       - python -m pip install aws_cdk.aws_apigateway
-      - cdk synth -- -o dist
+      - cdk synth -o dist
       # - cdk bootstrap '236258404484/ap-southeast-1'
       # - cdk deploy --require-approval never
 artifacts:
   base-directory: dist
   files:
-    - '*.*.json'
+    - 'CdkPipelineStack.template.json'
