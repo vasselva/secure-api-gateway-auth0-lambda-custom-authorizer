@@ -16,7 +16,10 @@ phases:
       - cdk synth -o dist
       # - cdk bootstrap '236258404484/ap-southeast-1'
       # - cdk deploy --require-approval never
+  post_build:
+    commands:
+      - ls -lRt dist
 artifacts:
   base-directory: 'dist'
   files:
-    - '**/CdkPipelineStack.template.json'
+    - '*.template.json'
